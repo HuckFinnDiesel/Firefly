@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 """
-    Magicality Add-on
+    Firefly Add-on
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -32,8 +32,8 @@ from resources.lib.modules import log_utils
 from resources.lib.modules import utils
 
 BASE_URL = 'http://api.trakt.tv'
-V2_API_KEY = '8715d98ae3103b670f63de3eef544046eb0706f75c33519688f4e6f82b4f743d'
-CLIENT_SECRET = '8872a28c19158fd73a012d0f7e094404b46bcb8d8292e408edcefb626180e56b'
+V2_API_KEY = '3031cdedd7b18d025edbaabda98702fb0430143292c4df6bc6a89ceecd0fffbe'
+CLIENT_SECRET = 'fee2513baeaa714265e67efc9d8cfe1e13a0fe2e4066cb0277482daf2c3b3af0'
 REDIRECT_URI = 'urn:ietf:wg:oauth:2.0:oob'
 
 def __getTrakt(url, post=None):
