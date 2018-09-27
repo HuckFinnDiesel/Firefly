@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<addon id="repository.firefly" name="Firefly Repo" version="0.0.1" provider-name="FinnDiesel">
+	<extension point="xbmc.addon.repository" name="Firefly Repo">
+		<info compressed="false">https://raw.githubusercontent.com/HuckFinnDiesel/repository.firefly/master/zips/addons.xml</info>
+		<checksum>https://raw.githubusercontent.com/HuckFinnDiesel/repository.firefly/master/zips/addons.xml.md5</checksum>
+		<datadir zip="true">https://raw.githubusercontent.com/HuckFinnDiesel/repository.firefly/master/zips</datadir>
+	</extension>
+	<extension point="xbmc.addon.metadata">
+		<summary>Firefly</summary>
+		<description>Firefly - Bringing it back!</description>
+		<disclaimer></disclaimer>
+		<platform>all</platform>
+	</extension>
+</addon>
