@@ -24,7 +24,7 @@ from __resolve_generic__ import ResolveGeneric
 
 class MystreamResolver(ResolveGeneric):
     name = "mystream"
-    domains = ['mystream.to']
+    domains = ['mystream.la']
     pattern = '(?://|\.)(mystream\.la)/(?:external/)?([0-9a-zA-Z_]+)'
 
     def get_url(self, host, media_id):
