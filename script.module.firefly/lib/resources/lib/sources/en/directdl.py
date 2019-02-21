@@ -14,10 +14,10 @@
 
 import re,urllib,urlparse,json,random,base64
 
-from resources.lib.modules import cleantitle
-from resources.lib.modules import client
-from resources.lib.modules import cache
-from resources.lib.modules import debrid
+from providerModules.CivitasScrapers import cleantitle
+from providerModules.CivitasScrapers import client
+from providerModules.CivitasScrapers import cache
+from providerModules.CivitasScrapers import debrid
 
 
 class source:
@@ -98,7 +98,7 @@ class source:
 
             if url == None: return sources
 
-            if debrid.status() == False: raise Exception()
+            
 
             data = urlparse.parse_qs(url)
             data = dict([(i, data[i][0]) if data[i] else (i, '') for i in data])
@@ -203,5 +203,6 @@ class source:
             return url
         except:
             return
+
 
 

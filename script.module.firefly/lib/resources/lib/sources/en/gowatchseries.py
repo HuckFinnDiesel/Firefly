@@ -1,23 +1,17 @@
 # -*- coding: UTF-8 -*-
-#######################################################################
- # ----------------------------------------------------------------------------
- # "THE BEER-WARE LICENSE" (Revision 42):
- # @Daddy_Blamo wrote this file.  As long as you retain this notice you
- # can do whatever you want with this stuff. If we meet some day, and you think
- # this stuff is worth it, you can buy me a beer in return. - Muad'Dib
- # ----------------------------------------------------------------------------
-#######################################################################
+'''
+    gowatchseries scraper for Exodus forks.
+    Nov 9 2018 - Checked
 
-# Addon Name: Placenta
-# Addon id: plugin.video.placenta
-# Addon Provider: Mr.Blamo
-
+    Updated and refactored by someone.
+    Originally created by others.
+'''
 import re,urllib,urlparse,time,json
 
-from resources.lib.modules import control
-from resources.lib.modules import cleantitle
-from resources.lib.modules import client
-from resources.lib.modules import source_utils
+from providerModules.CivitasScrapers import control
+from providerModules.CivitasScrapers import cleantitle
+from providerModules.CivitasScrapers import client
+from providerModules.CivitasScrapers import source_utils
 
 class source:
     def __init__(self):
@@ -132,6 +126,7 @@ class source:
 
     def resolve(self, url):
         return url
+
 
 
 

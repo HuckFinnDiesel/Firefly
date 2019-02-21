@@ -1,53 +1,53 @@
 # -*- coding: UTF-8 -*-
-#######################################################################
- # ----------------------------------------------------------------------------
- # "THE BEER-WARE LICENSE" (Revision 42):
- # @Daddy_Blamo wrote this file.  As long as you retain this notice you
- # can do whatever you want with this stuff. If we meet some day, and you think
- # this stuff is worth it, you can buy me a beer in return. - Muad'Dib
- # ----------------------------------------------------------------------------
-#######################################################################
+					   
+'''
+    Eggmans Add-on
+						
+									 
 
-# Addon Name: Placenta
-# Addon id: plugin.video.placenta
-# Addon Provider: Mr.Blamo
+    This program is free software: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
 
-# Scraper Checked and Fixed 11-08-2018 -JewBMX
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
 
-import re, urlparse, urllib, base64
+    You should have received a copy of the GNU General Public License
+    along with this program.  If not, see <http://www.gnu.org/licenses/>..
+'''
 
-from providerModules.CivitasScrapers import cleantitle
-from providerModules.CivitasScrapers import client
-from providerModules.CivitasScrapers import cache
-from providerModules.CivitasScrapers import dom_parser2
-from providerModules.CivitasScrapers import debrid
+import re,urlparse,urllib,base64
+from providerModules.CivitasScrapers import cleantitle,client,dom_parser2,cfscrape
+
 
 class source:
     def __init__(self):
         self.priority = 1
         self.language = ['en']
-        self.domains = ['moviesonline.gy','moviesonline.tl']
-        self.base_link = 'http://www1.moviesonline.gy'
+        self.domains = ['kat.tv']
+        self.base_link = 'http://www1.kat.tv'
         self.search_link = '/search-movies/%s.html'
-# moviesonline.mx  is now ddos protected
+        self.scraper = cfscrape.create_scraper()
 
 
     def movie(self, imdb, title, localtitle, aliases, year):
         try:
             clean_title = cleantitle.geturl(title)
             search_url = urlparse.urljoin(self.base_link, self.search_link % clean_title.replace('-', '+'))
-            r = cache.get(client.request, 1, search_url)
-            r = client.parseDOM(r, 'div', {'id': 'movie-featured'})
-            r = [(client.parseDOM(i, 'a', ret='href'),
-                  re.findall('.+?elease:\s*(\d{4})</', i),
-                  re.findall('<b><i>(.+?)</i>', i)) for i in r]
-            r = [(i[0][0], i[1][0], i[2][0]) for i in r if
-                 (cleantitle.get(i[2][0]) == cleantitle.get(title) and i[1][0] == year)]
+            r = self.scraper.get(search_url).content
+            r = dom_parser2.parse_dom(r, 'li', {'class': 'item'})
+            r = [(dom_parser2.parse_dom(i, 'a', attrs={'class': 'title'}),
+                  re.findall('status-year">(\d{4})</div', i.content, re.DOTALL)[0]) for i in r if i]
+            r = [(i[0][0].attrs['href'], re.findall('(.+?)</b><br', i[0][0].content, re.DOTALL)[0], i[1]) for i in r if i]
+            r = [(i[0], i[1], i[2]) for i in r if (cleantitle.get(i[1]) == cleantitle.get(title) and i[2] == year)]
             url = r[0][0]
-
             return url
         except Exception:
             return
+
 
     def tvshow(self, imdb, tvdb, tvshowtitle, localtvshowtitle, aliases, year):
         try:
@@ -57,38 +57,40 @@ class source:
         except:
             return
 
+
     def episode(self, url, imdb, tvdb, title, premiered, season, episode):
         try:
             if url == None: return
-
             url = urlparse.parse_qs(url)
             url = dict([(i, url[i][0]) if url[i] else (i, '') for i in url])
             url['premiered'], url['season'], url['episode'] = premiered, season, episode
             try:
                 clean_title = cleantitle.geturl(url['tvshowtitle'])+'-season-%d' % int(season)
                 search_url = urlparse.urljoin(self.base_link, self.search_link % clean_title.replace('-', '+'))
-                r = cache.get(client.request, 1, search_url)
-                r = client.parseDOM(r, 'div', {'id': 'movie-featured'})
-                r = [(client.parseDOM(i, 'a', ret='href'),
-                      re.findall('<b><i>(.+?)</i>', i)) for i in r]
-                r = [(i[0][0], i[1][0]) for i in r if
-                     cleantitle.get(i[1][0]) == cleantitle.get(clean_title)]
+                r = self.scraper.get(search_url).content
+                r = dom_parser2.parse_dom(r, 'li', {'class': 'item'})
+                r = [(dom_parser2.parse_dom(i, 'a', attrs={'class': 'title'}),
+                      dom_parser2.parse_dom(i, 'div', attrs={'class':'status'})[0]) for i in r if i]
+                r = [(i[0][0].attrs['href'], re.findall('(.+?)</b><br', i[0][0].content, re.DOTALL)[0],
+                      re.findall('(\d+)', i[1].content)[0]) for i in r if i]
+                r = [(i[0], i[1].split(':')[0], i[2]) for i in r
+                     if (cleantitle.get(i[1].split(':')[0]) == cleantitle.get(url['tvshowtitle']) and i[2] == str(int(season)))]
                 url = r[0][0]
             except:
                 pass
-            data = client.request(url)
+            data = self.scraper.get(url).content
             data = client.parseDOM(data, 'div', attrs={'id': 'details'})
             data = zip(client.parseDOM(data, 'a'), client.parseDOM(data, 'a', ret='href'))
             url = [(i[0], i[1]) for i in data if i[0] == str(int(episode))]
-
             return url[0][1]
         except:
             return
 
+
     def sources(self, url, hostDict, hostprDict):
         try:
             sources = []
-            r = cache.get(client.request, 1, url)
+            r = self.scraper.get(url).content
             try:
                 v = re.findall('document.write\(Base64.decode\("(.+?)"\)', r)[0]
                 b64 = base64.b64decode(v)
@@ -103,7 +105,7 @@ class source:
                         'language': 'en',
                         'url': url.replace('\/', '/'),
                         'direct': False,
-                        'debridonly': True
+                        'debridonly': False
                     })
                 except:
                     pass
@@ -125,7 +127,7 @@ class source:
                             'language': 'en',
                             'url': url.replace('\/', '/'),
                             'direct': False,
-                            'debridonly': True
+                            'debridonly': False
                         })
                     except:
                         pass
@@ -133,11 +135,18 @@ class source:
         except Exception:
             return
 
+
     def resolve(self, url):
         if self.base_link in url:
-            url = client.request(url)
-            v = re.findall('document.write\(Base64.decode\("(.+?)"\)', url)[0]
-            b64 = base64.b64decode(v)
-            url = client.parseDOM(b64, 'iframe', ret='src')[0]
+            try:
+                r = self.scraper.get(url).content
+                v = re.findall('document.write\(Base64.decode\("(.+?)"\)', r)[0]
+                b64 = base64.b64decode(v)
+                url = client.parseDOM(b64, 'iframe', ret='src')[0]
+            except:
+                r = self.scraper.get(url).content
+                r = client.parseDOM(r, 'div', attrs={'class':'player'})
+                url = client.parseDOM(r, 'a', ret='href')[0]
         return url
+
 

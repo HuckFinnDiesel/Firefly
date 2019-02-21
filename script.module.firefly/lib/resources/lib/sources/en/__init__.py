@@ -1,8 +1,8 @@
-# -*- coding: UTF-8 -*-
+    
+# -*- coding: utf-8 -*-    
 
-import os.path
+import os.path    
 
-files = os.listdir(os.path.dirname(__file__))
-__all__ = [filename[:-3] for filename in files if not filename.startswith('__') and filename.endswith('.py')]
+files = os.listdir(os.path.dirname(__file__))    
 
-
+__all__ = [filename[:-3] for filename in files if not filename.startswith('__') and filename.endswith('.py')]    

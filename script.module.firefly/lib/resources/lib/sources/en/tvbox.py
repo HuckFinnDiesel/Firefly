@@ -1,23 +1,17 @@
 # -*- coding: UTF-8 -*-
-#######################################################################
- # ----------------------------------------------------------------------------
- # "THE BEER-WARE LICENSE" (Revision 42):
- # @Daddy_Blamo wrote this file.  As long as you retain this notice you
- # can do whatever you want with this stuff. If we meet some day, and you think
- # this stuff is worth it, you can buy me a beer in return. - Muad'Dib
- # ----------------------------------------------------------------------------
-#######################################################################
+'''
+    tvbox scraper for Exodus forks.
+    Nov 9 2018 - Checked
 
-# Addon Name: Placenta
-# Addon id: plugin.video.placenta
-# Addon Provider: Mr.Blamo
-
+    Updated and refactored by someone.
+    Originally created by others.
+'''
 import re,urllib,urlparse,json,base64,hashlib,time
 
-from resources.lib.modules import cleantitle
-from resources.lib.modules import client
-from resources.lib.modules import source_utils
-from resources.lib.modules import dom_parser
+from providerModules.CivitasScrapers import cleantitle
+from providerModules.CivitasScrapers import client
+from providerModules.CivitasScrapers import source_utils
+from providerModules.CivitasScrapers import dom_parser
 
 class source:
     def __init__(self):
@@ -89,3 +83,4 @@ class source:
         r = dom_parser.parse_dom(r, 'div', {'class': 'link_under_video'})
         r = dom_parser.parse_dom(r, 'a', req='href')
         return r[0].attrs['href']
+
