@@ -1,6 +1,6 @@
-# Addon Name: Incurison
-# Addon id: plugin.video.resistance
-# Addon Provider: lockdown
+# Addon Name: Firefly
+# Addon id: plugin.video.firefly
+# Addon Provider: Finn Diesel
 # Translators:
 # Translators:
 # Translators:
@@ -19,7 +19,7 @@
 # Translators:
 msgid ""
 msgstr ""
-"Project-Id-Version: RESISTANCE\n"
+"Project-Id-Version: FIREFLY\n"
 "POT-Creation-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "PO-Revision-Date: 2016-08-01 02:03+0000\n"
 "Last-Translator: lambda81\n"
@@ -220,23 +220,23 @@ msgid "[B]SETTINGS[/B] : Providers"
 msgstr ""
 
 msgctxt "#32048"
-msgid "[B]resistance[/B] : Downloads"
+msgid "[B]firefly[/B] : Downloads"
 msgstr ""
 
 msgctxt "#32049"
-msgid "[B]resistance[/B] : Viewtypes"
+msgid "[B]firefly[/B] : Viewtypes"
 msgstr ""
 
 msgctxt "#32050"
-msgid "[B]resistance[/B] : Clear providers..."
+msgid "[B]firefly[/B] : Clear providers..."
 msgstr ""
 
 msgctxt "#32051"
-msgid "[B]resistance[/B] : Clear metadata..."
+msgid "[B]firefly[/B] : Clear metadata..."
 msgstr ""
 
 msgctxt "#32052"
-msgid "[B]resistance[/B] : Clear cache..."
+msgid "[B]firefly[/B] : Clear cache..."
 msgstr ""
 
 msgctxt "#32053"
@@ -292,11 +292,11 @@ msgid "Queue item"
 msgstr ""
 
 msgctxt "#32066"
-msgid "Watched in resistance"
+msgid "Watched in firefly"
 msgstr ""
 
 msgctxt "#32067"
-msgid "Unwatched in resistance"
+msgid "Unwatched in firefly"
 msgstr ""
 
 msgctxt "#32068"
@@ -716,7 +716,7 @@ msgid "Library"
 msgstr ""
 
 msgctxt "#32542"
-msgid "resistance folders will be imported to library if they are added to media sources."
+msgid "firefly folders will be imported to library if they are added to media sources."
 msgstr ""
 
 msgctxt "#32543"
@@ -772,7 +772,7 @@ msgid "Are you sure?"
 msgstr ""
 
 msgctxt "#32556"
-msgid "[B]resistance[/B] : Library"
+msgid "[B]firefly[/B] : Library"
 msgstr ""
 
 msgctxt "#32557"
@@ -780,15 +780,15 @@ msgid "[B]LIBRARY[/B] : Settings"
 msgstr ""
 
 msgctxt "#32558"
-msgid "[B]resistance[/B] : Update library..."
+msgid "[B]firefly[/B] : Update library..."
 msgstr ""
 
 msgctxt "#32559"
-msgid "[B]resistance[/B] : Movie folder..."
+msgid "[B]firefly[/B] : Movie folder..."
 msgstr ""
 
 msgctxt "#32560"
-msgid "[B]resistance[/B] : TV folder..."
+msgid "[B]firefly[/B] : TV folder..."
 msgstr ""
 
 msgctxt "#32561"
@@ -920,7 +920,7 @@ msgid "New search..."
 msgstr ""
 
 msgctxt "#32604"
-msgid "[B]resistance[/B] : Clear search history..."
+msgid "[B]firefly[/B] : Clear search history..."
 msgstr ""
 
 msgctxt "#32605"
