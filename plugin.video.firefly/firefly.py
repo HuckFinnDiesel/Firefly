@@ -337,29 +337,35 @@ elif action == 'smuSettings':
 
 elif action == 'download':
     import json
-    from resources.lib.modules import sources
+    #from resources.lib.modules import sources
+	from civitasscrapers import sources
     from resources.lib.modules import downloader
     try: downloader.download(name, image, sources.sources().sourcesResolve(json.loads(source)[0], True))
     except: pass
 
 elif action == 'play':
-    from resources.lib.modules import sources
+    #from resources.lib.modules import sources
+	from civitasscrapers import sources
     sources.sources().play(title, year, imdb, tvdb, season, episode, tvshowtitle, premiered, meta, select)
 
 elif action == 'addItem':
-    from resources.lib.modules import sources
+    #from resources.lib.modules import sources
+	from civitasscrapers import sources
     sources.sources().addItem(title)
 
 elif action == 'playItem':
-    from resources.lib.modules import sources
+    #from resources.lib.modules import sources
+	from civitasscrapers import sources
     sources.sources().playItem(title, source)
 
 elif action == 'alterSources':
-    from resources.lib.modules import sources
+    #from resources.lib.modules import sources
+	from civitasscrapers import sources
     sources.sources().alterSources(url, meta)
 
 elif action == 'clearSources':
-    from resources.lib.modules import sources
+    #from resources.lib.modules import sources
+	from civitasscrapers import sources
     sources.sources().clearSources()
 
 elif action == 'random':

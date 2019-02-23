@@ -321,8 +321,7 @@ class sources:
         sourceDict = [(i[0], i[1], i[1].language) for i in sourceDict]
         sourceDict = [(i[0], i[1]) for i in sourceDict if any(x in i[2] for x in language)]
 
-        #try: sourceDict = [(i[0], i[1], control.setting('provider.' + i[0])) for i in sourceDict]
-		try: sourceDict = [(i[0], i[1], control.addon("script.module.civitasscrapers").getSetting('provider.' + i[0])) for i in sourceDict]
+        try: sourceDict = [(i[0], i[1], control.setting('provider.' + i[0])) for i in sourceDict]
         except: sourceDict = [(i[0], i[1], 'true') for i in sourceDict]
         sourceDict = [(i[0], i[1]) for i in sourceDict if not i[2] == 'false']
 
