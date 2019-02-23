@@ -196,11 +196,6 @@
         <setting id="provider.xrysoi" type="bool" label="XRYSOI" default="false" />
         <setting id="provider.liomenoi" type="bool" label="LIOMENOI" default="false" />
     </category>
-    <category label="Other Hosters">
-        <setting label="Lambda Scrapers" type="lsep" />
-        <setting id="ls.enabled" type="bool" label="Lambda Scrapers Enabled? (This will override any settings already set for providers in the previous section.)" default="false"/>
-        <setting id="ls.choice" label="Which one?" type="select" values="All|Incursion|Placenta|Yoda" default="All" subsetting="true"/>
-    </category>
     <category label="32346">
         <setting type="lsep" label="FANART.TV" />
         <setting type="lsep" label="32582" default="" />
@@ -300,5 +295,8 @@
         <setting type="lsep" label="[CR]" />
         <setting type="lsep" label="32358" />
         <setting type="lsep" label="32359" />
+    </category>
+    <category label="External Scrapers">
+        <setting label="Civitas Scrapers Settings" type="action" option="close" action="RunPlugin(plugin://script.module.civitasscrapers/?mode=CivitasSettings)"/>
     </category>
 </settings>

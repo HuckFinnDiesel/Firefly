@@ -26,7 +26,7 @@ from xml.dom import minidom
 import glob
 import datetime
 import traceback
-from configparser import SafeConfigParser
+from ConfigParser import SafeConfigParser
 
 class Generator:
     
