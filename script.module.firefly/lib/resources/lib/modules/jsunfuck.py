@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 """
-    Covenant Add-on
+    Firefly Add-on
     Copyright (C) 2016 tknorris
 
     This program is free software: you can redistribute it and/or modify

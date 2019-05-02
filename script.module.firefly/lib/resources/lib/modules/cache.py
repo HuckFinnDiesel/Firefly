@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 """
-    Covenant Add-on
+    Firefly Add-on
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -257,14 +257,14 @@ def _find_cache_version():
         with open(versionFile, 'rb') as fh: oldVersion = fh.read()
     except: oldVersion = '0'
     try:
-        curVersion = control.addon('script.module.exodusredux').getAddonInfo('version')
+        curVersion = control.addon('script.module.firefly').getAddonInfo('version')
         if oldVersion != curVersion: 
             with open(versionFile, 'wb') as fh: fh.write(curVersion)
             return True
         else: return False
     except: return False
 
-def _find_cache_versionAlt(): #Added to keep track of plugin.video.exodusredux version
+def _find_cache_versionAlt(): #Added to keep track of plugin.video.firefly version
 
     import os
     versionFile = os.path.join(control.dataPath, 'cache.v2')
@@ -272,7 +272,7 @@ def _find_cache_versionAlt(): #Added to keep track of plugin.video.exodusredux v
         with open(versionFile, 'rb') as fh: oldVersion = fh.read()
     except: oldVersion = '0'
     try:
-        curVersion = control.addon('plugin.video.exodusredux').getAddonInfo('version')
+        curVersion = control.addon('plugin.video.firefly').getAddonInfo('version')
         if oldVersion != curVersion:
             with open(versionFile, 'wb') as fh: fh.write(curVersion)
             return True

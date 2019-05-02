@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
 
 '''
-    Covenant Add-on
-    Copyright (C) 2017 Covenant
+    Firefly Add-on
+    Copyright (C) 2017 Firefly
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
