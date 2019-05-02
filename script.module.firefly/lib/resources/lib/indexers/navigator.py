@@ -386,7 +386,7 @@ class navigator:
         url = '%s?action=%s' % (sysaddon, query) if isAction == True else query
         thumb = os.path.join(artPath, thumb) if not artPath == None else icon
         cm = []
-        cm.append(('Exodus Redux Settings', 'RunPlugin(%s?action=openSettings&query=(0,0))' % sysaddon))
+        cm.append(('Firefly Settings', 'RunPlugin(%s?action=openSettings&query=(0,0))' % sysaddon))
         if queue == True: cm.append((queueMenu, 'RunPlugin(%s?action=queueItem)' % sysaddon))
         if not context == None: cm.append((control.lang(context[0]).encode('utf-8'), 'RunPlugin(%s?action=%s)' % (sysaddon, context[1])))
         item = control.item(label=name)

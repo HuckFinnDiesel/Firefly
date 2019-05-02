@@ -1,7 +1,6 @@
-# Translators:
-# Addon Name: resistance
-# Addon id: plugin.video.resistance
-# Addon Provider: lockdown
+# Addon Name: Firefly
+# Addon id: plugin.video.exodusredux
+# Addon Provider: Finn Diesel
 # Translators:
 # Translators:
 # Translators:
@@ -25,7 +24,7 @@
 # lambda81, 2016
 msgid ""
 msgstr ""
-"Project-Id-Version: RESISTANCE\n"
+"Project-Id-Version: Firefly\n"
 "POT-Creation-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "PO-Revision-Date: 2017-05-30 13:23+0000\n"
 "Last-Translator: Viper2k4\n"
@@ -33,7 +32,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Language: de\n"
+"Language: en\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 
@@ -226,24 +225,24 @@ msgid "[B]SETTINGS[/B] : Providers"
 msgstr "[B]EINSTELLUNGEN[/B] : Indexseiten"
 
 msgctxt "#32048"
-msgid "[B]RESISTANCE[/B] : Downloads"
-msgstr "[B]RESISTANCE[/B] : Downloads"
+msgid "[B]FIREFLY[/B] : Downloads"
+msgstr "[B]FIREFLY[/B] : Downloads"
 
 msgctxt "#32049"
-msgid "[B]RESISTANCE[/B] : Viewtypes"
-msgstr "[B]RESISTANCE[/B] : Anzeige-Typen"
+msgid "[B]FIREFLY[/B] : Viewtypes"
+msgstr "[B]FIREFLY[/B] : Anzeige-Typen"
 
 msgctxt "#32050"
-msgid "[B]RESISTANCE[/B] : Clear providers..."
-msgstr "[B]RESISTANCE[/B] : Indexseiten-Cache leeren..."
+msgid "[B]FIREFLY[/B] : Clear providers..."
+msgstr "[B]FIREFLY[/B] : Indexseiten-Cache leeren..."
 
 msgctxt "#32051"
-msgid "[B]RESISTANCE[/B] : Clear metadata..."
-msgstr "[B]RESISTANCE[/B] : Metadaten-Cache leeren..."
+msgid "[B]FIREFLY[/B] : Clear metadata..."
+msgstr "[B]FIREFLY[/B] : Metadaten-Cache leeren..."
 
 msgctxt "#32052"
-msgid "[B]RESISTANCE[/B] : Clear cache..."
-msgstr "[B]RESISTANCE[/B] : Cache leeren..."
+msgid "[B]FIREFLY[/B] : Clear cache..."
+msgstr "[B]FIREFLY[/B] : Cache leeren..."
 
 msgctxt "#32053"
 msgid "[I]Next Page[/I]"
@@ -298,12 +297,12 @@ msgid "Queue item"
 msgstr "Eintrag zur Warteschlange hinzufügen"
 
 msgctxt "#32066"
-msgid "Watched in RESISTANCE"
-msgstr "In RESISTANCE Angesehen"
+msgid "Watched in Firefly"
+msgstr "In Firefly Angesehen"
 
 msgctxt "#32067"
-msgid "Unwatched in RESISTANCE"
-msgstr "In RESISTANCE Ungesehen"
+msgid "Unwatched in Firefly"
+msgstr "In Firefly Ungesehen"
 
 msgctxt "#32068"
 msgid "Watched in Trakt"
@@ -585,13 +584,17 @@ msgctxt "#32373"
 msgid "Force container refresh"
 msgstr "Verzeichnis neu laden"
 
+msgctxt "#32374"
+msgid "Enable Debug"
+msgstr ""
+
 msgctxt "#32401"
 msgid "No stream available"
 msgstr "Keine Streams verfügbar"
 
 msgctxt "#32402"
-msgid "Playback outside RESISTANCE is not allowed"
-msgstr "Eine Wiedergabe außerhalb von RESISTANCE ist nicht erlaubt"
+msgid "Playback outside Firefly is not allowed"
+msgstr "Eine Wiedergabe außerhalb von Firefly ist nicht erlaubt"
 
 msgctxt "#32403"
 msgid "Download"
@@ -714,16 +717,16 @@ msgid "Configure Debrid Services in ResolveURL Settings."
 msgstr "Konfiguriere Debrid-Dienste in den ResolveURL-Einstellungen."
 
 msgctxt "#32540"
-msgid "ResolveURL Settings"
-msgstr "ResolveURL-Einstellungen"
+msgid "[B]RESOLVEURL[/B] : Settings"
+msgstr "[B]RESOLVEURL[/B] : Einstellungen"
 
 msgctxt "#32541"
 msgid "Library"
 msgstr "Bibliothek"
 
 msgctxt "#32542"
-msgid "RESISTANCE folders will be imported to library if they are added to media sources."
-msgstr "RESISTANCE-Ordner werden in die Bibliothek importiert, wenn sie zu Medienquellen hinzugefügt werden."
+msgid "Firefly folders will be imported to library if they are added to media sources."
+msgstr "Firefly-Ordner werden in die Bibliothek importiert, wenn sie zu Medienquellen hinzugefügt werden."
 
 msgctxt "#32543"
 msgid "Movies"
@@ -778,24 +781,24 @@ msgid "Are you sure?"
 msgstr "Sind Sie sicher?"
 
 msgctxt "#32556"
-msgid "[B]RESISTANCE[/B] : Library"
-msgstr "[B]RESISTANCE[/B] : Bibliothek"
+msgid "[B]FIREFLY[/B] : Library"
+msgstr "[B]FIREFLY[/B] : Bibliothek"
 
 msgctxt "#32557"
 msgid "[B]LIBRARY[/B] : Settings"
 msgstr "[B]BIBLIOTHEK[/B] : Einstellungen"
 
 msgctxt "#32558"
-msgid "[B]RESISTANCE[/B] : Update library..."
-msgstr "[B]RESISTANCE[/B] : Bibliothek aktualisieren..."
+msgid "[B]FIREFLY[/B] : Update library..."
+msgstr "[B]FIREFLY[/B] : Bibliothek aktualisieren..."
 
 msgctxt "#32559"
-msgid "[B]RESISTANCE[/B] : Movie folder..."
-msgstr "[B]RESISTANCE[/B] : Film-Ordner..."
+msgid "[B]FIREFLY[/B] : Movie folder..."
+msgstr "[B]FIREFLY[/B] : Film-Ordner..."
 
 msgctxt "#32560"
-msgid "[B]RESISTANCE[/B] : TV folder..."
-msgstr "[B]RESISTANCE[/B] : Serien-Ordner..."
+msgid "[B]FIREFLY[/B] : TV folder..."
+msgstr "[B]FIREFLY[/B] : Serien-Ordner..."
 
 msgctxt "#32561"
 msgid "[B]TRAKT[/B] : Import Collection..."
@@ -912,3 +915,171 @@ msgstr "Hole Genre-Info von Trakt"
 msgctxt "#32600"
 msgid "Preparing sources"
 msgstr "Quellen werden vorbereitet"
+
+msgctxt "#32601"
+msgid "Total"
+msgstr "Gesamt"
+
+msgctxt "#32602"
+msgid "Waiting for"
+msgstr "Warten auf"
+
+msgctxt "#32603"
+msgid "New search..."
+msgstr "Neue Suche..."
+
+msgctxt "#32604"
+msgid "[B]FIREFLY[/B] : Clear search history..."
+msgstr "[B]FIREFLY[/B]: Suchhistorie löschen ..."
+
+msgctxt "#32605"
+msgid "Click to clear search history"
+msgstr "Klicken Sie hier, um den Suchverlauf zu löschen"
+
+msgctxt "#32606"
+msgid "Prem"
+msgstr "Bezahlt"
+
+msgctxt "#32607"
+msgid "Normal"
+msgstr "Kostenlos"
+
+msgctxt "#32608"
+msgid "Unaired Season/Episode Color"
+msgstr "Unaired Season / Episodenfarbe"
+
+msgctxt "#32609"
+msgid "[B][COLOR red]ResolveURL[/COLOR][/B] Settings"
+msgstr "[B][COLOR red]ResolveURL[/COLOR][/B] Settings"
+
+msgctxt "#32610"
+msgid "Kids Corner"
+msgstr ""
+
+msgctxt "#32611"
+msgid "Fitness Zone"
+msgstr ""
+
+msgctxt "#32612"
+msgid "Legends of Music"
+msgstr ""
+
+msgctxt "#80000"
+msgid "Kings Of Horror"
+msgstr ""
+
+msgctxt "#80001"
+msgid "Kung Fu"
+msgstr ""
+
+msgctxt "#80002"
+msgid "Urban"
+msgstr ""
+
+msgctxt "#80003"
+msgid "MST3K / Sci-Fi"
+msgstr ""
+
+msgctxt "#80004"
+msgid "Movie Time"
+msgstr ""
+
+msgctxt "#32613"
+msgid "[B]FIREFLY[/B] : Clear All Cache..."
+msgid "[B]FIREFLY[/B] : Alle Cache löschen ..."
+
+msgctxt "#32614"
+msgid "[B]FIREFLY[/B] : Clear Meta Cache..."
+msgstr "[B]FIREFLY[/B] : Meta-Cache löschen ..."
+
+msgctxt "#32615"
+msgid "Check Host for Valid URL"
+msgstr "Überprüfen Sie den Host auf gültige URL"
+
+msgctxt "#32616"
+msgid "Debugging"
+msgstr ""
+
+msgctxt "#32617"
+msgid "Debug Log"
+msgstr "Austestungsprotokoll"
+
+msgctxt "#32618"
+msgid "Kodi Log"
+msgstr "Was ist Log"
+
+msgctxt "#32619"
+msgid "Addon Log"
+msgstr ""
+
+msgctxt "#32620"
+msgid "Podcasts"
+msgstr ""
+
+msgctxt "#32621"
+msgid "Navigation"
+msgstr ""
+
+msgctxt "#32622"
+msgid "Main Menu"
+msgstr "Hauptmenü"
+
+msgctxt "#32623"
+msgid "Reviews and Trailers"
+msgstr "Bewertungen und Anhänger"
+
+msgctxt "#32624"
+msgid "P[COLOR red]o[/COLOR]dcast[COLOR red]One[/COLOR]"
+msgstr ""
+
+msgctxt "#32625"
+msgid "Featured Podcasts"
+msgstr ""
+
+msgctxt "#32626"
+msgid "New Podcasts"
+msgstr ""
+
+msgctxt "#32627"
+msgid "Categories"
+msgstr "Kategorien"
+
+msgctxt "#32628"
+msgid "[B]SETTINGS[/B] : Navigation"
+msgstr "[B]SETTINGS[/B] : Navigation"
+
+msgctxt "#32629"
+msgid "PodBay"
+msgstr ""
+
+msgctxt "#32630"
+msgid "Show Season 0 in Browse Seasons"
+msgstr "Staffel 0 in Browse Seasons anzeigen"
+
+msgctxt "#32631"
+msgid "Documentaries"
+msgstr "Dokumentarfilme"
+
+msgctxt "#32634"
+msgid "Torrent Source Identifier Color"
+msgstr "Torrent Source Identifier Farbe"
+
+msgctxt "#32635"
+msgid "Torrent Support (Requires Real-Debrid or Premiumize)"
+msgstr "Torrent-Support (erfordert echte Rückstände oder Premium-Unterstützung)"
+
+msgctxt "#32636"
+msgid "Enable Torrent Scrapers"
+msgstr "Aktivieren Sie Torrent Scrapers"
+
+msgctxt "#32637"
+msgid "Real-Debrid Torrent Settings"
+msgstr "Real-Debrid Torrent-Einstellungen"
+
+msgctxt "#32638"
+msgid "Minimum Seeders"
+msgstr "Minimale Sämaschine"
+
+msgctxt "#32639"
+msgid "Sort By Torrent/Premium"
+msgstr "Nach Torrent / Premium sortieren"

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <addons>
-<addon id="plugin.video.firefly" version="1.1.0" name="Firefly" provider-name="FinnDiesel">
+<addon id="plugin.video.firefly" version="1.1.1" name="Firefly" provider-name="FinnDiesel">
 	<requires>
 		<import addon="xbmc.python" version="2.19.0" />
 		<import addon="script.module.firefly" />
@@ -126,7 +126,7 @@
     </extension>
 </addon>
 
-<addon id="script.module.firefly" name="Firefly Module" version="1.2.0" provider-name="FinnDiesel">
+<addon id="script.module.firefly" name="Firefly Module" version="1.2.1" provider-name="FinnDiesel">
 	<requires>
 		<import addon="xbmc.python" version="2.1.0" />
 		<import addon="script.module.beautifulsoup4"/>

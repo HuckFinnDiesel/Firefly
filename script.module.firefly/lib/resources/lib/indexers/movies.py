@@ -908,7 +908,7 @@ class movies:
 
                 cm.append((addToLibrary, 'RunPlugin(%s?action=movieToLibrary&name=%s&title=%s&year=%s&imdb=%s&tmdb=%s)' % (sysaddon, sysname, systitle, year, imdb, tmdb)))
                 
-                cm.append(('Exodus Redux Settings', 'RunPlugin(%s?action=openSettings&query=(0,0))' % sysaddon))
+                cm.append(('Firefly Settings', 'RunPlugin(%s?action=openSettings&query=(0,0))' % sysaddon))
                 
                 item = control.item(label=label)
 

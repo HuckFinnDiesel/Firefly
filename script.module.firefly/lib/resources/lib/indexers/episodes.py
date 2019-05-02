@@ -1489,7 +1489,7 @@ class episodes:
 
                 cm.append((addToLibrary, 'RunPlugin(%s?action=tvshowToLibrary&tvshowtitle=%s&year=%s&imdb=%s&tvdb=%s)' % (sysaddon, systvshowtitle, year, imdb, tvdb)))
 
-                cm.append(('Exodus Redux Settings', 'RunPlugin(%s?action=openSettings&query=(0,0))' % sysaddon))
+                cm.append(('Firefly Settings', 'RunPlugin(%s?action=openSettings&query=(0,0))' % sysaddon))
                 
                 item = control.item(label=label)
 

@@ -20,7 +20,17 @@ from resources.lib.modules import log_utils
 from resources.lib.modules import control
 import threading
 
+addon_settings = xbmc.translatePath('special://userdata/addon_data/plugin.video.firefly/settings.xml')
+
 control.execute('RunPlugin(plugin://%s)' % control.get_plugin_url({'action': 'service'}))
+
+run2 = control.setting('first.info2')
+if run2 == '': run2 = 'true' #clean install scenerio
+if run2 == 'true':
+    import os
+    if os.path.exists(xbmc.translatePath(addon_settings)):
+        control.deleteFile(addon_settings)
+    control.setSetting(id='first.info2', value='false')
 
 def syncTraktLibrary():
     control.execute(
@@ -31,18 +41,17 @@ def syncTraktLibrary():
 try:
     ModuleVersion = control.addon('script.module.firefly').getAddonInfo('version')
     AddonVersion = control.addon('plugin.video.firefly').getAddonInfo('version')
-    #RepoVersion = control.addon('repository.colossus').getAddonInfo('version')
 
-    log_utils.log('######################### firefly ############################', log_utils.LOGNOTICE)
-    log_utils.log('####### CURRENT firefly VERSIONS REPORT ######################', log_utils.LOGNOTICE)
-    log_utils.log('### firefly PLUGIN VERSION: %s ###' % str(AddonVersion), log_utils.LOGNOTICE)
-    log_utils.log('### firefly SCRIPT VERSION: %s ###' % str(ModuleVersion), log_utils.LOGNOTICE)
-    #log_utils.log('### firefly REPOSITORY VERSION: %s ###' % str(RepoVersion), log_utils.LOGNOTICE)
+    log_utils.log('######################### FIREFLY ############################', log_utils.LOGNOTICE)
+    log_utils.log('####### CURRENT FIREFLY VERSIONS REPORT ######################', log_utils.LOGNOTICE)
+    log_utils.log('### FIREFLY PLUGIN VERSION: %s ###' % str(AddonVersion), log_utils.LOGNOTICE)
+    log_utils.log('### FIREFLY SCRIPT VERSION: %s ###' % str(ModuleVersion), log_utils.LOGNOTICE)
+    #log_utils.log('### FIREFLY REPOSITORY VERSION: %s ###' % str(RepoVersion), log_utils.LOGNOTICE)
     log_utils.log('###############################################################', log_utils.LOGNOTICE)
 except:
-    log_utils.log('######################### firefly ############################', log_utils.LOGNOTICE)
-    log_utils.log('####### CURRENT firefly VERSIONS REPORT ######################', log_utils.LOGNOTICE)
-    log_utils.log('### ERROR GETTING firefly VERSIONS - NO HELP WILL BE GIVEN AS THIS IS NOT AN OFFICIAL firefly INSTALL. ###', log_utils.LOGNOTICE)
+    log_utils.log('######################### FIREFLY ############################', log_utils.LOGNOTICE)
+    log_utils.log('####### CURRENT FIREFLY VERSIONS REPORT ######################', log_utils.LOGNOTICE)
+    log_utils.log('### ERROR GETTING FIREFLY VERSIONS - NO HELP WILL BE GIVEN AS THIS IS NOT AN OFFICIAL FIREFLY INSTALL. ###', log_utils.LOGNOTICE)
     log_utils.log('###############################################################', log_utils.LOGNOTICE)
 
 if control.setting('autoTraktOnStart') == 'true':
