@@ -1,7 +1,8 @@
 # -*- coding: utf-8 -*-
 
 """
-    Firefly Add-on
+    //Covenant Add-on//
+    Updated for Exodus Redux Add-on
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -132,10 +133,6 @@ key = "RgUkXp2s5v8x/A?D(G+KbPeShVmYq3t6"
 
 iv = "p2s5v8y/B?E(H+Mb"
 
-def autoTraktSubscription(tvshowtitle, year, imdb, tvdb):
-    from . import libtools
-    libtools.libtvshows().add(tvshowtitle, year, imdb, tvdb)
-
 def addonIcon():
     theme = appearance() ; art = artPath()
     if not (art == None and theme in ['-', '']): return os.path.join(art, 'icon.png')
@@ -197,17 +194,17 @@ def get_plugin_url(queries):
 def artPath():
     theme = appearance()
     if theme in ['-', '']: return
-    elif condVisibility('System.HasAddon(script.magicality.artwork)'):
-        return os.path.join(xbmcaddon.Addon('script.magicality.artwork').getAddonInfo('path'), 'resources', 'media', theme)
+    elif condVisibility('System.HasAddon(script.exodusredux.artwork)'):
+        return os.path.join(xbmcaddon.Addon('script.exodusredux.artwork').getAddonInfo('path'), 'resources', 'media', theme)
 
 
 def appearance():
-    appearance = setting('appearance.1').lower() if condVisibility('System.HasAddon(script.magicality.artwork)') else setting('appearance.alt').lower()
+    appearance = setting('appearance.1').lower() if condVisibility('System.HasAddon(script.exodusredux.artwork)') else setting('appearance.alt').lower()
     return appearance
 
 
 def artwork():
-    execute('RunPlugin(plugin://script.magicality.artwork)')
+    execute('RunPlugin(plugin://script.exodusredux.artwork)')
 
 
 def infoDialog(message, heading=addonInfo('name'), icon='', time=3000, sound=False):
@@ -225,9 +222,10 @@ def yesnoDialog(line1, line2, line3, heading=addonInfo('name'), nolabel='', yesl
 def selectDialog(list, heading=addonInfo('name')):
     return dialog.select(heading, list)
 
+
 def metaFile():
-    if condVisibility('System.HasAddon(script.magicality.metadata)'):
-        return os.path.join(xbmcaddon.Addon('script.magicality.metadata').getAddonInfo('path'), 'resources', 'data', 'meta.db')
+    if condVisibility('System.HasAddon(script.exodusredux.metadata)'):
+        return os.path.join(xbmcaddon.Addon('script.exodusredux.metadata').getAddonInfo('path'), 'resources', 'data', 'meta.db')
 
 
 def apiLanguage(ret_name=None):
@@ -303,6 +301,7 @@ def getCurrentViewId():
     win = xbmcgui.Window(xbmcgui.getCurrentWindowId())
     return str(win.getFocusId())
 
+
 def refresh():
     return execute('Container.Refresh')
 
@@ -315,4 +314,3 @@ def idle():
 
 def queueItem():
     return execute('Action(Queue)')
-

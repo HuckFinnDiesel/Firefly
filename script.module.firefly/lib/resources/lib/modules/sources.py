@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 '''
-    Firefly Add-on
+    Exodus Redux Add-on
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -25,7 +25,8 @@ import sys
 import time
 import urllib
 import urlparse
-import civitasscrapers
+#import lambdascrapers
+import openscrapers
 
 from resources.lib.modules import (cleantitle, client, control, debrid,
                                    log_utils, source_utils, trakt, tvmaze,
@@ -995,8 +996,9 @@ class sources:
                 filter += [dict(i.items() + [('debrid', d.name)]) for i in self.sources if i['source'] in valid_hoster and 'magnet:' not in str(i['url'])]
             else:
                 filter += [dict(i.items() + [('debrid', d.name)]) for i in self.sources if i['source'] in valid_hoster or str(i['url']).startswith('magnet:')]
-        filter += [i for i in self.sources if not i['source'].lower() in self.hostprDict and i['debridonly'] is False]
-
+#        filter += [i for i in self.sources if not i['source'].lower() in self.hostprDict and i['debridonly'] is False]
+        if debrid_only == 'false' or  debrid.status() == False:
+            filter += [i for i in self.sources if not i['source'].lower() in self.hostprDict and i['debridonly'] is False]
         self.sources = filter
 
         for i in range(len(self.sources)):
@@ -1446,12 +1448,13 @@ class sources:
         return title
 
     def getConstants(self):
-        self.itemProperty = 'plugin.video.firefly.container.items'
+        self.itemProperty = 'plugin.video.exodusredux.container.items'
 
-        self.metaProperty = 'plugin.video.firefly.container.meta'
+        self.metaProperty = 'plugin.video.exodusredux.container.meta'
 
-#from resources.lib.sources import sources
-	from civitasscrapers import sources
+	#from resources.lib.sources import sources
+#	from lambdascrapers import sources
+	from openscrapers import sources
 
         self.sourceDict = sources()
 

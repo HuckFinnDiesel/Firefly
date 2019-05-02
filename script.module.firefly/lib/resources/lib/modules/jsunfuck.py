@@ -1,6 +1,6 @@
-#!/usr/bin/python
+# -*- coding: utf-8 -*-
 """
-    Firefly Add-on
+    Covenant Add-on
     Copyright (C) 2016 tknorris
 
     This program is free software: you can redistribute it and/or modify
@@ -16,6 +16,9 @@
     You should have received a copy of the GNU General Public License
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 """
+
+
+
 import re
 import sys
 import urllib
@@ -23,7 +26,7 @@ import string
 import json
 
 class JSUnfuck(object):
-    resistance = None
+    numbers = None
     words = {
         "(![]+[])": "false",
         "([]+{})": "[object Object]",
@@ -74,7 +77,7 @@ class JSUnfuck(object):
         while True:
             start_js = self.js
             self.repl_words(self.words)
-            self.repl_resistance()
+            self.repl_numbers()
             self.repl_arrays(self.words)
             self.repl_uniqs(self.uniqs)
             if start_js == self.js:
@@ -104,13 +107,13 @@ class JSUnfuck(object):
                 except:
                     pass
         
-    def repl_resistance(self):
-        if self.resistance is None:
-            self.resistance = self.__gen_resistance()
+    def repl_numbers(self):
+        if self.numbers is None:
+            self.numbers = self.__gen_numbers()
             
         while True:
             start_js = self.js
-            for key, value in sorted(self.resistance.items(), key=lambda x: len(x[0]), reverse=True):
+            for key, value in sorted(self.numbers.items(), key=lambda x: len(x[0]), reverse=True):
                 self.js = self.js.replace(key, value)
     
             if self.js == start_js:
@@ -173,7 +176,7 @@ class JSUnfuck(object):
             else:
                 start = offset
         
-    def __gen_resistance(self):
+    def __gen_numbers(self):
         n = {'!+[]+!![]+!![]+!![]+!![]+!![]+!![]+!![]+!![]': '9',
              '!+[]+!![]+!![]+!![]+!![]': '5', '!+[]+!![]+!![]+!![]': '4',
              '!+[]+!![]+!![]+!![]+!![]+!![]': '6', '!+[]+!![]': '2',

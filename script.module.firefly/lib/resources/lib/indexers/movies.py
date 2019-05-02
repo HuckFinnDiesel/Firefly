@@ -1,8 +1,6 @@
 # -*- coding: utf-8 -*-
 
 '''
-    Magicality Add-on
-
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
     the Free Software Foundation, either version 3 of the License, or
@@ -16,7 +14,6 @@
     You should have received a copy of the GNU General Public License
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 '''
-
 
 from resources.lib.modules import trakt
 from resources.lib.modules import cleangenre
@@ -41,8 +38,8 @@ class movies:
     def __init__(self):
         self.list = []
 
-        self.imdb_link = 'http://www.imdb.com'
-        self.trakt_link = 'http://api.trakt.tv'
+        self.imdb_link = 'https://www.imdb.com'
+        self.trakt_link = 'https://api.trakt.tv'
         self.datetime = (datetime.datetime.utcnow() - datetime.timedelta(hours = 5))
         self.systime = (self.datetime).strftime('%Y%m%d%H%M%S%f')
         self.year_date = (self.datetime - datetime.timedelta(days = 365)).strftime('%Y-%m-%d')
@@ -55,72 +52,39 @@ class movies:
         self.lang = control.apiLanguage()['trakt']
         self.hidecinema = control.setting('hidecinema')
 
-        self.search_link = 'http://api.trakt.tv/search/movie?limit=20&page=1&query='
-        self.fanart_tv_art_link = 'http://webservice.fanart.tv/v3/movies/%s'
-        self.fanart_tv_level_link = 'http://webservice.fanart.tv/v3/level'
-        self.tm_art_link = 'http://api.themoviedb.org/3/movie/%s/images?api_key=%s&language=en-US&include_image_language=en,%s,null' % ('%s', self.tm_user, self.lang)
+        self.search_link = 'https://api.trakt.tv/search/movie?limit=20&page=1&query='
+        self.fanart_tv_art_link = 'https://webservice.fanart.tv/v3/movies/%s'
+        self.fanart_tv_level_link = 'https://webservice.fanart.tv/v3/level'
+        self.tm_art_link = 'https://api.themoviedb.org/3/movie/%s/images?api_key=%s&language=en-US&include_image_language=en,%s,null' % ('%s', self.tm_user, self.lang)
         self.tm_img_link = 'https://image.tmdb.org/t/p/w%s%s'
 
-        self.persons_link = 'http://www.imdb.com/search/name?count=100&name='
-        self.personlist_link = 'http://www.imdb.com/search/name?count=100&gender=male,female'
-        self.person_link = 'http://www.imdb.com/search/title?title_type=feature,tv_movie&production_status=released&role=%s&sort=year,desc&count=40&start=1'
-        self.keyword_link = 'http://www.imdb.com/search/title?title_type=feature,tv_movie,documentary&num_votes=100,&release_date=,date[0]&keywords=%s&sort=moviemeter,asc&count=40&start=1'
-        self.oscars_link = 'http://www.imdb.com/search/title?title_type=feature,tv_movie&production_status=released&groups=oscar_best_picture_winners&sort=year,desc&count=40&start=1'
-        self.theaters_link = 'http://www.imdb.com/search/title?title_type=feature&num_votes=1000,&release_date=date[365],date[0]&sort=release_date_us,desc&count=40&start=1'
-        self.year_link = 'http://www.imdb.com/search/title?title_type=feature,tv_movie&num_votes=100,&production_status=released&year=%s,%s&sort=moviemeter,asc&count=40&start=1'
+        self.persons_link = 'https://www.imdb.com/search/name?count=100&name='
+        self.personlist_link = 'https://www.imdb.com/search/name?count=100&gender=male,female'
+        self.person_link = 'https://www.imdb.com/search/title?title_type=feature,tv_movie&production_status=released&role=%s&sort=year,desc&count=40&start=1'
+        self.keyword_link = 'https://www.imdb.com/search/title?title_type=feature,tv_movie,documentary&num_votes=100,&release_date=,date[0]&keywords=%s&sort=moviemeter,asc&count=40&start=1'
+        self.oscars_link = 'https://www.imdb.com/search/title?title_type=feature,tv_movie&production_status=released&groups=oscar_best_picture_winners&sort=year,desc&count=40&start=1'
+        self.theaters_link = 'https://www.imdb.com/search/title?title_type=feature&num_votes=1000,&countries=us&sort=release_date,desc&count=40&start=1'
+        self.year_link = 'https://www.imdb.com/search/title?title_type=feature,tv_movie&num_votes=100,&production_status=released&year=%s,%s&sort=moviemeter,asc&count=40&start=1'
+        self.popular_link = 'https://www.imdb.com/search/title?title_type=feature,tv_movie&num_votes=1000,&production_status=released&groups=top_1000&sort=moviemeter,asc&count=40&start=1'
+        self.views_link = 'https://www.imdb.com/search/title?title_type=feature,tv_movie&num_votes=1000,&production_status=released&sort=num_votes,desc&count=40&start=1'
+        self.featured_link = 'https://www.imdb.com/search/title?title_type=feature,tv_movie&num_votes=1000,&production_status=released&release_date=date[365],date[60]&sort=moviemeter,asc&count=40&start=1'
+        self.genre_link = 'https://www.imdb.com/search/title?title_type=feature,tv_movie,documentary&num_votes=100,&release_date=,date[0]&genres=%s&sort=moviemeter,asc&count=40&start=1'
+        self.language_link = 'https://www.imdb.com/search/title?title_type=feature,tv_movie&num_votes=100,&production_status=released&primary_language=%s&sort=moviemeter,asc&count=40&start=1'
+        self.certification_link = 'https://www.imdb.com/search/title?title_type=feature,tv_movie&num_votes=100,&production_status=released&certificates=us:%s&sort=moviemeter,asc&count=40&start=1'
+        self.boxoffice_link = 'https://www.imdb.com/search/title?title_type=feature,tv_movie&production_status=released&sort=boxoffice_gross_us,desc&count=40&start=1'
 
-        if self.hidecinema == 'true':
-            self.popular_link = 'http://www.imdb.com/search/title?title_type=feature,tv_movie&num_votes=1000,&production_status=released&groups=top_1000&release_date=,date[90]&sort=moviemeter,asc&count=40&start=1'
-            self.views_link = 'http://www.imdb.com/search/title?title_type=feature,tv_movie&num_votes=1000,&production_status=released&sort=num_votes,desc&release_date=,date[90]&count=40&start=1'
-            self.featured_link = 'http://www.imdb.com/search/title?title_type=feature,tv_movie&num_votes=1000,&production_status=released&release_date=date[365],date[90]&sort=moviemeter,asc&count=40&start=1'
-            self.genre_link = 'http://www.imdb.com/search/title?title_type=feature,tv_movie,documentary&num_votes=100,&release_date=,date[90]&genres=%s&sort=moviemeter,asc&count=40&start=1'
-            self.language_link = 'http://www.imdb.com/search/title?title_type=feature,tv_movie&num_votes=100,&production_status=released&primary_language=%s&sort=moviemeter,asc&release_date=,date[90]&count=40&start=1'
-            self.certification_link = 'http://www.imdb.com/search/title?title_type=feature,tv_movie&num_votes=100,&production_status=released&certificates=us:%s&sort=moviemeter,asc&release_date=,date[90]&count=40&start=1'
-            self.boxoffice_link = 'http://www.imdb.com/search/title?title_type=feature,tv_movie&production_status=released&sort=boxoffice_gross_us,desc&release_date=,date[90]&count=40&start=1'
-        else:
-            self.popular_link = 'http://www.imdb.com/search/title?title_type=feature,tv_movie&num_votes=1000,&production_status=released&groups=top_1000&sort=moviemeter,asc&count=40&start=1'
-            self.views_link = 'http://www.imdb.com/search/title?title_type=feature,tv_movie&num_votes=1000,&production_status=released&sort=num_votes,desc&count=40&start=1'
-            self.featured_link = 'http://www.imdb.com/search/title?title_type=feature,tv_movie&num_votes=1000,&production_status=released&release_date=date[365],date[60]&sort=moviemeter,asc&count=40&start=1'
-            self.genre_link = 'http://www.imdb.com/search/title?title_type=feature,tv_movie,documentary&num_votes=100,&release_date=,date[0]&genres=%s&sort=moviemeter,asc&count=40&start=1'
-            self.language_link = 'http://www.imdb.com/search/title?title_type=feature,tv_movie&num_votes=100,&production_status=released&primary_language=%s&sort=moviemeter,asc&count=40&start=1'
-            self.certification_link = 'http://www.imdb.com/search/title?title_type=feature,tv_movie&num_votes=100,&production_status=released&certificates=us:%s&sort=moviemeter,asc&count=40&start=1'
-            self.boxoffice_link = 'http://www.imdb.com/search/title?title_type=feature,tv_movie&production_status=released&sort=boxoffice_gross_us,desc&count=40&start=1'
-            self.top2_link = 'https://www.imdb.com/search/title?groups=top_250'
-            self.top3_link = 'https://www.imdb.com/search/title?title_type=feature&groups=top_100'
-            self.top4_link = 'https://www.imdb.com/search/title?title_type=feature&groups=top_1000'
-            self.bestd_link = 'https://www.imdb.com/search/title?title_type=feature&groups=best_director_winner&sort=user_rating,desc'
-            self.nfb_link = 'https://www.imdb.com/search/title?title_type=feature&groups=national_film_preservation_board_winner&sort=user_rating,desc'
-            self.para_link = 'https://www.imdb.com/search/title?title_type=feature&companies=paramount'
-            self.mgm_link = 'https://www.imdb.com/search/title?title_type=feature&companies=mgm'
-            self.warb_link = 'https://www.imdb.com/search/title?title_type=feature&companies=warner'
-            self.disney1_link = 'https://www.imdb.com/search/title?user_rating=1.0,10.0&companies=disney'
-            self.dream_link = 'https://www.imdb.com/search/title?title_type=feature&companies=dreamworks'
-            self.fox_link = 'https://www.imdb.com/search/title?title_type=feature&companies=fox'
-            self.sony_link = 'https://www.imdb.com/search/title?title_type=feature&companies=sony'
-            self.uni_link = 'https://www.imdb.com/search/title?title_type=feature&companies=universal'
-            self.primev_link = 'https://www.imdb.com/search/title?title_type=feature&online_availability=US%2Ftoday%2FAmazon%2Fsubs'
-            self.classmov_link = 'https://www.imdb.com/search/title?title_type=feature&release_date=1900-01-01,1993-12-31'
-            self.classsci_link = 'https://www.imdb.com/search/title?title_type=feature&release_date=1900-01-01,1993-12-31&genres=sci_fi'
-            self.classani_link = 'https://www.imdb.com/search/title?title_type=feature&release_date=1900-01-01,1993-12-31&genres=animation'
-            self.classwar_link = 'https://www.imdb.com/search/title?title_type=feature&release_date=1900-01-01,1993-12-31&genres=war'
-            self.classwest_link = 'https://www.imdb.com/search/title?title_type=feature&release_date=1900-01-01,1993-12-31&genres=western'
-            self.eighties_link = 'https://www.imdb.com/search/title?title_type=feature&release_date=1980-01-01,1989-12-31'
-            self.nineties_link = 'https://www.imdb.com/search/title?title_type=feature&release_date=1990-01-01,1999-12-31'
-            self.noughties_link = 'https://www.imdb.com/search/title?title_type=feature&release_date=2000-01-01,2010-12-31'
-            self.twentyten_link = 'https://www.imdb.com/search/title?title_type=feature&release_date=2010-01-01,2019-12-31'
-       
-        self.added_link  = 'http://www.imdb.com/search/title?title_type=feature,tv_movie&languages=en&num_votes=500,&production_status=released&release_date=%s,%s&sort=release_date,desc&count=20&start=1' % (self.year_date, self.today_date)
-        self.trending_link = 'http://api.trakt.tv/movies/trending?limit=40&page=1'
-        self.traktlists_link = 'http://api.trakt.tv/users/me/lists'
-        self.traktlikedlists_link = 'http://api.trakt.tv/users/likes/lists?limit=1000000'
-        self.traktlist_link = 'http://api.trakt.tv/users/%s/lists/%s/items'
-        self.traktcollection_link = 'http://api.trakt.tv/users/me/collection/movies'
-        self.traktwatchlist_link = 'http://api.trakt.tv/users/me/watchlist/movies'
-        self.traktfeatured_link = 'http://api.trakt.tv/recommendations/movies?limit=40'
-        self.trakthistory_link = 'http://api.trakt.tv/users/me/history/movies?limit=40&page=1'
-        self.imdblists_link = 'http://www.imdb.com/user/ur%s/lists?tab=all&sort=mdfd&order=desc&filter=titles' % self.imdb_user
-        self.imdblist_link = 'http://www.imdb.com/list/%s/?view=detail&sort=alpha,asc&title_type=movie,short,tvMovie,tvSpecial,video&start=1'
-        self.imdblist2_link = 'http://www.imdb.com/list/%s/?view=detail&sort=date_added,desc&title_type=movie,short,tvMovie,tvSpecial,video&start=1'
+        self.added_link = 'https://www.imdb.com/search/title?title_type=feature,tv_movie&languages=en&num_votes=500,&production_status=released&release_date=%s,%s&sort=release_date,desc&count=20&start=1' % (self.year_date, self.today_date)
+        self.trending_link = 'https://api.trakt.tv/movies/trending?limit=40&page=1'
+        self.traktlists_link = 'https://api.trakt.tv/users/me/lists'
+        self.traktlikedlists_link = 'https://api.trakt.tv/users/likes/lists?limit=1000000'
+        self.traktlist_link = 'https://api.trakt.tv/users/%s/lists/%s/items'
+        self.traktcollection_link = 'https://api.trakt.tv/users/me/collection/movies'
+        self.traktwatchlist_link = 'https://api.trakt.tv/users/me/watchlist/movies'
+        self.traktfeatured_link = 'https://api.trakt.tv/recommendations/movies?limit=40'
+        self.trakthistory_link = 'https://api.trakt.tv/users/me/history/movies?limit=40&page=1'
+        self.imdblists_link = 'https://www.imdb.com/user/ur%s/lists?tab=all&sort=mdfd&order=desc&filter=titles' % self.imdb_user
+        self.imdblist_link = 'https://www.imdb.com/list/%s/?view=detail&sort=alpha,asc&title_type=movie,short,tvMovie,tvSpecial,video&start=1'
+        self.imdblist2_link = 'https://www.imdb.com/list/%s/?view=detail&sort=date_added,desc&title_type=movie,short,tvMovie,tvSpecial,video&start=1'
         self.imdbwatchlist_link = 'http://www.imdb.com/user/ur%s/watchlist?sort=alpha,asc' % self.imdb_user
         self.imdbwatchlist2_link = 'http://www.imdb.com/user/ur%s/watchlist?sort=date_added,desc' % self.imdb_user
 
@@ -165,12 +129,10 @@ class movies:
                 self.list = cache.get(self.imdb_list, 24, url)
                 if idx == True: self.worker()
 
-
             if idx == True and create_directory == True: self.movieDirectory(self.list)
             return self.list
         except:
             pass
-
 
     def widget(self):
         setting = control.setting('movie.widget')
@@ -187,81 +149,43 @@ class movies:
             self.get(self.featured_link)
 
     def search(self):
-
         navigator.navigator().addDirectoryItem(32603, 'movieSearchnew', 'search.png', 'DefaultMovies.png')
-        try: from sqlite3 import dbapi2 as database
-        except: from pysqlite2 import dbapi2 as database
-
-        dbcon = database.connect(control.searchFile)
-        dbcur = dbcon.cursor()
-
-        try:
-            dbcur.executescript("CREATE TABLE IF NOT EXISTS movies (ID Integer PRIMARY KEY AUTOINCREMENT, term);")
-        except:
-            pass
-
-        dbcur.execute("SELECT * FROM movies ORDER BY ID DESC")
-        lst = []
-
-        delete_option = False
-        for (id,term) in dbcur.fetchall():
-            if term not in str(lst):
-                delete_option = True
-                navigator.navigator().addDirectoryItem(term, 'movieSearchterm&name=%s' % term, 'search.png', 'DefaultMovies.png')
-                lst += [(term)]
-        dbcur.close()
-
-        if delete_option:
+        search_history = control.setting('moviesearch')
+        if search_history:
+            for term in search_history.split('\n'):
+                if term:
+                    navigator.navigator().addDirectoryItem(term, 'movieSearchterm&name=%s' % term, 'search.png', 'DefaultMovies.png')
             navigator.navigator().addDirectoryItem(32605, 'clearCacheSearch', 'tools.png', 'DefaultAddonProgram.png')
-
         navigator.navigator().endDirectory()
 
+        
     def search_new(self):
-            control.idle()
+        t = control.lang(32010).encode('utf-8')
+        k = control.keyboard('', t) ; k.doModal()
+        q = k.getText().strip() if k.isConfirmed() else None
+        if not q: return
 
-            t = control.lang(32010).encode('utf-8')
-            k = control.keyboard('', t) ; k.doModal()
-            q = k.getText() if k.isConfirmed() else None
+        search_history = control.setting('moviesearch')
+        if q not in search_history.split('\n'):
+            control.setSetting('moviesearch', q + '\n' + search_history)
 
-            if (q == None or q == ''): return
+        url = self.search_link + urllib.quote_plus(q)
+        self.get(url)
 
-            #try: from sqlite3 import dbapi2 as database
-            #except: from pysqlite2 import dbapi2 as database
-
-            #dbcon = database.connect(control.searchFile)
-            #dbcur = dbcon.cursor()
-            #dbcur.execute("INSERT INTO movies VALUES (?,?)", (None,q))
-            #dbcon.commit()
-            #dbcur.close()
-            url = self.search_link + q.replace(" ", "+")
-            #url = '%s?action=moviePage&url=%s' % (sys.argv[0], urllib.quote_plus(url))
-            #control.execute('Container.Update(%s)' % url)
-            movies().get(url)
-
+            
     def search_term(self, name):
-            control.idle()
-
-            url = self.search_link + urllib.quote_plus(name)
-            url = '%s?action=moviePage&url=%s' % (sys.argv[0], urllib.quote_plus(url))
-            control.execute('Container.Update(%s)' % url)
-
+        url = self.search_link + urllib.quote_plus(name)
+        self.get(url)
+        
+        
     def person(self):
-        try:
-            control.idle()
+        t = control.lang(32010).encode('utf-8')
+        k = control.keyboard('', t) ; k.doModal()
+        q = k.getText().strip() if k.isConfirmed() else None
+        if not q: return
 
-            t = control.lang(32010).encode('utf-8')
-            k = control.keyboard('', t) ; k.doModal()
-            q = k.getText() if k.isConfirmed() else None
-
-            if (q == None or q == ''): return
-
-            url = self.persons_link + q.replace(" ","+")
-            #url = '%s?action=moviePersons&url=%s' % (sys.argv[0], urllib.quote_plus(url))
-            #control.execute('Container.Update(%s)' % url)
-            movies().persons(url)
-        except:
-            return
-
+        url = self.persons_link + urllib.quote_plus(q)
+        self.persons(url)
 
     def genres(self):
         genres = [
@@ -299,7 +223,6 @@ class movies:
 
         self.addDirectory(self.list)
         return self.list
-
 
     def languages(self):
         languages = [
@@ -341,7 +264,6 @@ class movies:
         self.addDirectory(self.list)
         return self.list
 
-
     def certifications(self):
         certificates = ['G', 'PG', 'PG-13', 'R', 'NC-17']
 
@@ -349,14 +271,12 @@ class movies:
         self.addDirectory(self.list)
         return self.list
 
-
     def years(self):
         year = (self.datetime.strftime('%Y'))
 
         for i in range(int(year)-0, 1900, -1): self.list.append({'name': str(i), 'url': self.year_link % (str(i), str(i)), 'image': 'years.png', 'action': 'movies'})
         self.addDirectory(self.list)
         return self.list
-
 
     def persons(self, url):
         if url == None:
@@ -367,7 +287,6 @@ class movies:
         for i in range(0, len(self.list)): self.list[i].update({'action': 'movies'})
         self.addDirectory(self.list)
         return self.list
-
 
     def userlists(self):
         try:
@@ -407,7 +326,6 @@ class movies:
         for i in range(0, len(self.list)): self.list[i].update({'image': 'userlists.png', 'action': 'movies'})
         self.addDirectory(self.list, queue=True)
         return self.list
-
 
     def trakt_list(self, url, user):
         try:
@@ -498,7 +416,6 @@ class movies:
 
         return self.list
 
-
     def trakt_user_list(self, url, user):
         try:
             items = trakt.getTraktAsJson(url)
@@ -522,7 +439,6 @@ class movies:
 
         self.list = sorted(self.list, key=lambda k: utils.title_key(k['name']))
         return self.list
-
 
     def imdb_list(self, url):
         try:
@@ -657,7 +573,6 @@ class movies:
 
         return self.list
 
-
     def imdb_person_list(self, url):
         try:
             result = client.request(url)
@@ -688,7 +603,6 @@ class movies:
 
         return self.list
 
-
     def imdb_user_list(self, url):
         try:
             result = client.request(url)
@@ -714,7 +628,6 @@ class movies:
 
         self.list = sorted(self.list, key=lambda k: utils.title_key(k['name']))
         return self.list
-
 
     def worker(self, level=1):
         self.meta = []
@@ -743,7 +656,6 @@ class movies:
 
         if self.fanart_tv_user == '':
             for i in self.list: i.update({'clearlogo': '0', 'clearart': '0'})
-
 
     def super_info(self, i):
         try:
@@ -902,7 +814,6 @@ class movies:
         except:
             pass
 
-
     def movieDirectory(self, items):
         if items == None or len(items) == 0: control.idle() ; sys.exit()
 
@@ -968,7 +879,6 @@ class movies:
 
                 path = '%s?action=play&title=%s&year=%s&imdb=%s' % (sysaddon, systitle, year, imdb)
 
-
                 cm = []
 
                 cm.append(('Find similar',
@@ -997,7 +907,9 @@ class movies:
                     cm.append((control.lang2(19033).encode('utf-8'), 'Action(Info)'))
 
                 cm.append((addToLibrary, 'RunPlugin(%s?action=movieToLibrary&name=%s&title=%s&year=%s&imdb=%s&tmdb=%s)' % (sysaddon, sysname, systitle, year, imdb, tmdb)))
-
+                
+                cm.append(('Exodus Redux Settings', 'RunPlugin(%s?action=openSettings&query=(0,0))' % sysaddon))
+                
                 item = control.item(label=label)
 
                 art = {}
@@ -1013,7 +925,6 @@ class movies:
 
                 if 'clearart' in i and not i['clearart'] == '0':
                     art.update({'clearart': i['clearart']})
-
 
                 if settingFanart == 'true' and 'fanart2' in i and not i['fanart2'] == '0':
                     item.setProperty('Fanart_Image', i['fanart2'])
@@ -1054,7 +965,6 @@ class movies:
         control.directory(syshandle, cacheToDisc=True)
         views.setView('movies', {'skin.estuary': 55, 'skin.confluence': 500})
 
-
     def addDirectory(self, items, queue=False):
         if items == None or len(items) == 0: control.idle() ; sys.exit()
 
@@ -1083,7 +993,9 @@ class movies:
                 except: pass
 
                 cm = []
-
+                
+                cm.append(('Settings', 'RunPlugin(%s?action=openSettings&query=0.0)' % sysaddon))
+                
                 cm.append((playRandom, 'RunPlugin(%s?action=random&rtype=movie&url=%s)' % (sysaddon, urllib.quote_plus(i['url']))))
 
                 if queue == True:

@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 """
-    Firefly Add-on
+    Covenant Add-on
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -18,6 +18,7 @@
 """
 
 
+
 import json
 import re
 import time
@@ -31,9 +32,10 @@ from resources.lib.modules import control
 from resources.lib.modules import log_utils
 from resources.lib.modules import utils
 
-BASE_URL = 'http://api.trakt.tv'
-V2_API_KEY = '3031cdedd7b18d025edbaabda98702fb0430143292c4df6bc6a89ceecd0fffbe'
-CLIENT_SECRET = 'fee2513baeaa714265e67efc9d8cfe1e13a0fe2e4066cb0277482daf2c3b3af0'
+BASE_URL = 'https://api.trakt.tv'
+#BASE_URL = 'https://api-v2launch.trakt.tv'
+V2_API_KEY = 'c1d7d1519b5d70158fc568c42b8c7a39b4f73a73e17e25c0e85152a542cd1664'
+CLIENT_SECRET = '3f1c01e94538cf23aaed1d2d86ec5ac0909d1ce4cd0f436a6a3d9eb5c1ed24ce'
 REDIRECT_URI = 'urn:ietf:wg:oauth:2.0:oob'
 
 def __getTrakt(url, post=None):

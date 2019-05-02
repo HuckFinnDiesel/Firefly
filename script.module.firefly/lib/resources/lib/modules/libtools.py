@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 """
-    Firefly Add-on
+    Exodus Redux Add-on
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -619,5 +619,4 @@ class libepisodes:
                 pass
 
             control.sleep(10000)
-
 
