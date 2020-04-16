@@ -1,66 +1,83 @@
 # -*- coding: utf-8 -*-
 
 """
-    Firefly Add-on
-
-    This program is free software: you can redistribute it and/or modify
-    it under the terms of the GNU General Public License as published by
-    the Free Software Foundation, either version 3 of the License, or
-    (at your option) any later version.
-
-    This program is distributed in the hope that it will be useful,
-    but WITHOUT ANY WARRANTY; without even the implied warranty of
-    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-    GNU General Public License for more details.
-
-    You should have received a copy of the GNU General Public License
-    along with this program.  If not, see <http://www.gnu.org/licenses/>.
+	Firefly
 """
-from resources.lib.modules import log_utils
-from resources.lib.modules import control
+
 import threading
 
-addon_settings = xbmc.translatePath('special://userdata/addon_data/plugin.video.firefly/settings.xml')
+from resources.lib.modules import control
+from resources.lib.modules import log_utils
+from resources.lib.modules import trakt
 
+# check on adding while loop here with xbmc.Monitor().abortRequested() vs. inside the service function
 control.execute('RunPlugin(plugin://%s)' % control.get_plugin_url({'action': 'service'}))
 
-run2 = control.setting('first.info2')
-if run2 == '': run2 = 'true' #clean install scenerio
-if run2 == 'true':
-    import os
-    if os.path.exists(xbmc.translatePath(addon_settings)):
-        control.deleteFile(addon_settings)
-    control.setSetting(id='first.info2', value='false')
-
-def syncTraktLibrary():
-    control.execute(
-        'RunPlugin(plugin://%s)' % 'plugin.video.firefly/?action=tvshowsToLibrarySilent&url=traktcollection')
-    control.execute(
-        'RunPlugin(plugin://%s)' % 'plugin.video.firefly/?action=moviesToLibrarySilent&url=traktcollection')
+traktCredentials = trakt.getTraktCredentialsInfo()
 
 try:
-    ModuleVersion = control.addon('script.module.firefly').getAddonInfo('version')
-    AddonVersion = control.addon('plugin.video.firefly').getAddonInfo('version')
+	AddonVersion = control.addon('plugin.video.firefly').getAddonInfo('version')
+	RepoVersion = control.addon('repository.firefly').getAddonInfo('version')
+	log_utils.log('###################   Firefly   ##################', log_utils.LOGNOTICE)
+	log_utils.log('#####   CURRENT Firefly VERSIONS REPORT   #####', log_utils.LOGNOTICE)
+	log_utils.log('########   Firefly PLUGIN VERSION: %s   ########' % str(AddonVersion), log_utils.LOGNOTICE)
+	log_utils.log('#####   Firefly REPOSITORY VERSION: %s   #######' % str(RepoVersion), log_utils.LOGNOTICE)
+	log_utils.log('############################################', log_utils.LOGNOTICE)
 
-    log_utils.log('######################### FIREFLY ############################', log_utils.LOGNOTICE)
-    log_utils.log('####### CURRENT FIREFLY VERSIONS REPORT ######################', log_utils.LOGNOTICE)
-    log_utils.log('### FIREFLY PLUGIN VERSION: %s ###' % str(AddonVersion), log_utils.LOGNOTICE)
-    log_utils.log('### FIREFLY SCRIPT VERSION: %s ###' % str(ModuleVersion), log_utils.LOGNOTICE)
-    #log_utils.log('### FIREFLY REPOSITORY VERSION: %s ###' % str(RepoVersion), log_utils.LOGNOTICE)
-    log_utils.log('###############################################################', log_utils.LOGNOTICE)
 except:
-    log_utils.log('######################### FIREFLY ############################', log_utils.LOGNOTICE)
-    log_utils.log('####### CURRENT FIREFLY VERSIONS REPORT ######################', log_utils.LOGNOTICE)
-    log_utils.log('### ERROR GETTING FIREFLY VERSIONS - NO HELP WILL BE GIVEN AS THIS IS NOT AN OFFICIAL FIREFLY INSTALL. ###', log_utils.LOGNOTICE)
-    log_utils.log('###############################################################', log_utils.LOGNOTICE)
+	log_utils.log('############################# Firefly ############################', log_utils.LOGNOTICE)
+	log_utils.log('################# CURRENT Firefly VERSIONS REPORT ################', log_utils.LOGNOTICE)
+	log_utils.log('# ERROR GETTING Firefly VERSION - Missing Repo of failed Install #', log_utils.LOGNOTICE)
+	log_utils.log('################################################################', log_utils.LOGNOTICE)
+
+
+def syncTraktLibrary():
+	control.execute('RunPlugin(plugin://%s)' % 'plugin.video.firefly/?action=tvshowsToLibrarySilent&url=traktcollection')
+	control.execute('RunPlugin(plugin://%s)' % 'plugin.video.firefly/?action=moviesToLibrarySilent&url=traktcollection')
+
+
+def syncTraktWatched():
+	control.execute('RunPlugin(plugin://%s)' % 'plugin.video.firefly/?action=cachesyncTVShows')
+	control.execute('RunPlugin(plugin://%s)' % 'plugin.video.firefly/?action=cachesyncMovies')
+	# if control.setting('trakt.general.notifications') == 'true':
+		# control.notification(title = 'default', message = 'Trakt Watched Status Sync Complete', icon='default', time=1, sound=False)
+
+
+def check_for_addon_update():
+	try:
+		if control.setting('general.checkAddonUpdates') == 'false':
+			return
+		import re
+		import requests
+		repo_xml = requests.get('https://raw.githubusercontent.com/123Venom/zips/master/addons.xml')
+		if not repo_xml.status_code == 200:
+			log_utils.log('Could not connect to repo XML, status: %s' % repo_xml.status_code, log_utils.LOGNOTICE)
+			return
+		repo_version = re.findall(r'<addon id=\"plugin.video.firefly\" version=\"(\d*.\d*.\d*)\"', repo_xml.text)[0]
+		local_version = control.getVenomVersion()
+
+		if control.check_version_numbers(local_version, repo_version):
+			while control.condVisibility('Library.IsScanningVideo'):
+				control.sleep(10000)
+			log_utils.log('A newer version of Firefly is available. Installed Version: v%s, Repo Version: v%s' % (local_version, repo_version), log_utils.LOGNOTICE)
+			control.notification(title = 'default', message = control.lang(35523) % repo_version, icon = 'default', time=5000, sound=False)
+	except:
+		pass
+
+
+if traktCredentials is True:
+	syncTraktWatched()
 
 if control.setting('autoTraktOnStart') == 'true':
-    syncTraktLibrary()
+	syncTraktLibrary()
+
+if control.setting('general.checkAddonUpdates') == 'true':
+	check_for_addon_update()
 
 if int(control.setting('schedTraktTime')) > 0:
-    log_utils.log('###############################################################', log_utils.LOGNOTICE)
-    log_utils.log('#################### STARTING TRAKT SCHEDULING ################', log_utils.LOGNOTICE)
-    log_utils.log('#################### SCHEDULED TIME FRAME '+ control.setting('schedTraktTime')  + ' HOURS ################', log_utils.LOGNOTICE)
-    timeout = 3600 * int(control.setting('schedTraktTime'))
-    schedTrakt = threading.Timer(timeout, syncTraktLibrary)
-    schedTrakt.start()
+	log_utils.log('###############################################################', log_utils.LOGNOTICE)
+	log_utils.log('#################### STARTING TRAKT SCHEDULING ################', log_utils.LOGNOTICE)
+	log_utils.log('#################### SCHEDULED TIME FRAME '+ control.setting('schedTraktTime')  + ' HOURS ###############', log_utils.LOGNOTICE)
+	timeout = 3600 * int(control.setting('schedTraktTime'))
+	schedTrakt = threading.Timer(timeout, syncTraktLibrary)
+	schedTrakt.start()
