@@ -2,6 +2,9 @@
 <addon id="plugin.video.firefly" version="2.0.0" name="Firefly" provider-name="FinnDiesel">
 	<requires>
 		<import addon="xbmc.python" version="2.19.0" />
+		<import addon="script.module.firefly" />
+		<import addon="script.firefly.artwork" />
+		<import addon="script.firefly.metadata" />
 		<import addon="script.module.requests" version="2.19.1" />
 		<import addon="script.module.beautifulsoup4" version="4.5.3"/>
 		<import addon="script.module.metahandler" version="2.9.0" />
@@ -9,7 +12,6 @@
 		<import addon="script.module.resolveurl" version="5.0.27"/>
 		<import addon="script.module.openscrapers" />
 		<import addon="script.module.addon.signals" version="0.0.3"/>
-		<import addon="context.firefly" version="1.0.1"/>
 	</requires>
 	
 	<extension point="xbmc.python.pluginsource" library="firefly.py">
